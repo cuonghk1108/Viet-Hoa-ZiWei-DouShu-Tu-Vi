@@ -1,9 +1,7 @@
 'use client';
 
 /**
- * 古籍库搜索框 — client component
- *
- * 输入 → 实时搜索 → 跳转 /library/search?q=xxx
+ * Ô tìm kiếm cổ tịch — Client component
  */
 
 import { useState, useTransition } from 'react';
@@ -36,7 +34,7 @@ export default function LibrarySearch() {
         value={q}
         onChange={e => setQ(e.target.value)}
         onKeyDown={e => e.key === 'Enter' && submit()}
-        placeholder="搜索古籍原文，如：七杀朝斗 / 双禄朝垣 / 化忌"
+        placeholder="Tìm kiếm cổ tịch nguyên văn, ví dụ: Thất Sát / Song Lộc / Hóa Kỵ / Cốt Tủy Phú"
         style={{
           flex: 1,
           padding: '10px 14px',
@@ -58,12 +56,13 @@ export default function LibrarySearch() {
           color: 'white',
           fontSize: '13px',
           fontWeight: 600,
-          letterSpacing: '0.15em',
-          cursor: q.trim() ? 'pointer' : 'not-allowed',
-          opacity: q.trim() ? 1 : 0.5,
+          cursor: isPending || !q.trim() ? 'not-allowed' : 'pointer',
+          opacity: isPending || !q.trim() ? 0.6 : 1,
+          transition: 'opacity 0.2s',
+          whiteSpace: 'nowrap',
         }}
       >
-        {isPending ? '…' : '搜索'}
+        {isPending ? 'Đang tìm…' : 'Tìm kiếm'}
       </button>
     </div>
   );

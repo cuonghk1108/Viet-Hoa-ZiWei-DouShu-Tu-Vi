@@ -4,26 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface ScrollIntroProps {
   onComplete: () => void;
-  /** 跳过按钮文案 */
+  /** Nút bỏ qua */
   skipLabel?: string;
 }
 
-const BEIDOU = ['天枢', '天璇', '天玑', '天权', '玉衡', '开阳', '摇光'];
+const BEIDOU = ['Thiên Khu', 'Thiên Toàn', 'Thiên Cơ', 'Thiên Quyền', 'Ngọc Hoành', 'Khai Dương', 'Dao Quang'];
 
-export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: ScrollIntroProps) {
-  // visible：整个 intro 是否在显示
-  // unrolled：卷轴是否已展开（控制内容浮现）
+export default function ScrollIntro({ onComplete, skipLabel = 'Bỏ qua' }: ScrollIntroProps) {
   const [visible, setVisible] = useState(true);
   const [unrolled, setUnrolled] = useState(false);
 
   useEffect(() => {
-    // 时间序列：
-    // 0.0s        : 卷轴杆在中央，纸卷起来（width: 0）
-    // 0.3-2.0s   : 卷轴往两侧展开（1.7s）
-    // 2.0s        : unrolled = true，内容浮现
-    // 2.0-3.5s   : 内容停留 1.5s 给用户欣赏
-    // 3.5s        : 整体开始淡出
-    // 4.2s        : visible = false，触发 onComplete
     const t1 = setTimeout(() => setUnrolled(true), 1900);
     const t2 = setTimeout(() => setVisible(false), 3500);
     const t3 = setTimeout(onComplete, 4200);
@@ -35,7 +26,6 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
     setTimeout(onComplete, 700);
   };
 
-  // 卷轴展开缓动：先快后慢（卷轴拉开的物理感）
   const easeUnroll = [0.32, 0.72, 0.36, 1.0] as const;
 
   return (
@@ -52,7 +42,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
             overflow: 'hidden',
           }}
         >
-          {/* 远景星点装饰 */}
+          {/* Tinh tú nền */}
           <div style={{
             position: 'absolute', inset: 0,
             backgroundImage: `
@@ -65,13 +55,12 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
             `,
           }} />
 
-          {/* 卷轴主体（从右往左展开 — 右轴固定、纸向左铺、左轴向左移） */}
+          {/* Trục cuộn */}
           <div style={{
             position: 'relative',
             width: 'min(90vw, 1080px)',
             height: 'min(60vh, 480px)',
           }}>
-            {/* 宣纸（right 锚定在右轴内侧，width 从 0 → 100% - 左右两轴宽度） */}
             <motion.div
               initial={{ width: 0, opacity: 0.92 }}
               animate={{ width: 'calc(100% - 32px)', opacity: 1 }}
@@ -93,7 +82,6 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                 overflow: 'hidden',
               }}
             >
-              {/* 上下卷边阴影（仿古卷轴的折痕） */}
               <div style={{
                 position: 'absolute', top: 0, left: 0, right: 0, height: '8px',
                 background: 'linear-gradient(180deg, rgba(80,50,20,0.35), transparent)',
@@ -103,7 +91,6 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                 background: 'linear-gradient(0deg, rgba(80,50,20,0.35), transparent)',
               }} />
 
-              {/* 古纸纹理 */}
               <div style={{
                 position: 'absolute', inset: 0,
                 background: `
@@ -114,7 +101,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                 opacity: 0.7,
               }} />
 
-              {/* 卷轴内容（展开后浮现） */}
+              {/* Nội dung cuộn */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={unrolled ? { opacity: 1, y: 0 } : {}}
@@ -125,67 +112,65 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                   display: 'flex', flexDirection: 'column',
                   alignItems: 'center', justifyContent: 'center',
                   padding: '0 clamp(40px, 8vw, 120px)',
-                  fontFamily: '"STSong", "Songti SC", "SimSun", serif',
+                  fontFamily: '"Cinzel", "Times New Roman", serif',
                 }}
               >
-                {/* 顶部装饰：北斗七星名 */}
+                {/* Bắc đẩu thất tinh */}
                 <div style={{
                   fontSize: 'clamp(10px, 1.1vw, 12px)',
                   color: '#8b5d18',
-                  letterSpacing: '0.45em',
+                  letterSpacing: '0.35em',
                   marginBottom: 'clamp(20px, 3vh, 36px)',
-                  fontFamily: '"STKaiti", "Kaiti SC", serif',
                   whiteSpace: 'nowrap',
                   opacity: 0.85,
+                  fontWeight: 600,
                 }}>
                   {BEIDOU.join(' · ')}
                 </div>
 
-                {/* 烫金细线 */}
                 <div style={{
                   width: '60px', height: '1px',
                   background: 'linear-gradient(90deg, transparent, #a87a30, transparent)',
                   marginBottom: 'clamp(16px, 2.5vh, 28px)',
                 }} />
 
-                {/* 大字「紫微命盘」 */}
+                {/* Tiêu đề lớn */}
                 <h1 style={{
-                  fontSize: 'clamp(48px, 8vw, 110px)',
-                  fontWeight: 700,
+                  fontSize: 'clamp(36px, 6vw, 76px)',
+                  fontWeight: 800,
                   color: '#1a1208',
-                  letterSpacing: 'clamp(0.18em, 0.25vw, 0.3em)',
-                  lineHeight: 1.05,
+                  letterSpacing: 'clamp(0.12em, 0.18vw, 0.22em)',
+                  lineHeight: 1.1,
                   margin: 0,
                   textShadow: '0 1px 0 rgba(255,250,235,0.3)',
                   whiteSpace: 'nowrap',
                 }}>
-                  紫微命盘
+                  TỬ VI ĐẨU SỐ
                 </h1>
 
-                {/* 副标 楷体 */}
+                {/* Phụ đề */}
                 <div style={{
-                  fontSize: 'clamp(13px, 1.5vw, 18px)',
+                  fontSize: 'clamp(12px, 1.3vw, 16px)',
                   color: '#6b4818',
-                  letterSpacing: '0.4em',
-                  fontFamily: '"STKaiti", "Kaiti SC", serif',
+                  letterSpacing: '0.25em',
                   marginTop: 'clamp(16px, 2.5vh, 24px)',
                   marginBottom: '6px',
                   whiteSpace: 'nowrap',
+                  fontWeight: 600,
                 }}>
-                  观 天 之 象 · 察 人 之 命
+                  QUAN THIÊN CHI TƯỢNG · SÁT NHÂN CHI MỆNH
                 </div>
                 <div style={{
-                  fontSize: 'clamp(11px, 1.2vw, 14px)',
+                  fontSize: 'clamp(11px, 1.1vw, 13px)',
                   color: '#8b6410',
-                  letterSpacing: '0.3em',
-                  fontFamily: '"STSong", serif',
+                  letterSpacing: '0.15em',
                   whiteSpace: 'nowrap',
                   opacity: 0.85,
                 }}>
-                  倪海厦《天纪》正宗体系
+                  Chính Tông Hệ Thống Tử Vi Đẩu Số
                 </div>
 
-                {/* 朱砂方印 */}
+                {/* Triện ấn */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.6, rotate: -15 }}
                   animate={unrolled ? { opacity: 1, scale: 1, rotate: -4 } : {}}
@@ -200,19 +185,18 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontFamily: '"STSong", serif',
-                    fontWeight: 700,
-                    lineHeight: 1.05,
-                    letterSpacing: 0,
+                    fontWeight: 800,
+                    lineHeight: 1.1,
                     boxShadow: '0 2px 6px rgba(0,0,0,0.3), inset 0 0 0 2px rgba(245,236,215,0.15)',
-                    fontSize: 'clamp(11px, 1.2vw, 13px)',
+                    fontSize: 'clamp(10px, 1.1vw, 12px)',
+                    borderRadius: '2px',
                   }}
                 >
-                  <div style={{ display: 'flex', gap: '0' }}><span>王</span><span>多</span></div>
-                  <div style={{ display: 'flex', gap: '0' }}><span>鱼</span><span>印</span></div>
+                  <div>TỬ VI</div>
+                  <div>ĐẨU SỐ</div>
                 </motion.div>
 
-                {/* 底部装饰：八卦 */}
+                {/* Bát quái */}
                 <div style={{
                   marginTop: 'clamp(20px, 3vh, 32px)',
                   fontSize: 'clamp(13px, 1.4vw, 16px)',
@@ -226,7 +210,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
               </motion.div>
             </motion.div>
 
-            {/* 右卷轴杆（固定不动，是收纳卷轴的母轴） */}
+            {/* Trục cuộn phải */}
             <div
               style={{
                 position: 'absolute', top: 0, bottom: 0, right: 0,
@@ -237,7 +221,6 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
                 zIndex: 2,
               }}
             >
-              {/* 上端铜玉帽 */}
               <div style={{
                 position: 'absolute', top: '-14px', left: '-6px', right: '-6px',
                 height: '20px',
@@ -254,7 +237,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
               }} />
             </div>
 
-            {/* 左卷轴杆（从右轴位置出发，向左拉开 — 这是被「拉」的那根） */}
+            {/* Trục cuộn trái */}
             <motion.div
               initial={{ right: '0px' }}
               animate={{ right: 'calc(100% - 32px)' }}
@@ -285,7 +268,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
             </motion.div>
           </div>
 
-          {/* 跳过按钮 */}
+          {/* Nút bỏ qua */}
           <button
             onClick={handleSkip}
             style={{
@@ -297,8 +280,7 @@ export default function ScrollIntro({ onComplete, skipLabel = '跳 过' }: Scrol
               borderRadius: '4px',
               fontSize: '12px',
               cursor: 'pointer',
-              fontFamily: '"STSong", serif',
-              letterSpacing: '0.25em',
+              letterSpacing: '0.15em',
               transition: 'border-color 0.2s, color 0.2s',
             }}
             onMouseEnter={e => {

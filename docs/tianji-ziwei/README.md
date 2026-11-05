@@ -1,68 +1,47 @@
-# 倪海厦《天纪 · 紫微斗数》原话
+# Nguyên Văn Nghê Hải Hạ《Thiên Kỷ · Tử Vi Đẩu Số》
 
-这里是倪海厦先生《天纪》课程中**紫微斗数部分**的原话，共 **1848 条**，按讲次整理。每条都带出处时间，点一下就跳回 B 站原视频的那一秒，可以自己核对。
+Nơi đây tổng hợp nguyên văn lời giảng của thầy Nghê Hải Hạ trong khóa học《Thiên Kỷ》**phần Tử Vi Đẩu Số**, tổng cộng **1.848 điều trích dẫn**, được sắp xếp theo từng bài giảng. Mỗi điều đều có mốc thời gian xuất xứ, nhấp vào sẽ chuyển hướng đến đúng giây tương ứng của video gốc trên Bilibili để người học tự kiểm chứng.
 
-内容取自姊妹仓库 [nihai-tianji-corpus](https://github.com/Renhuai123/nihai-tianji-corpus)（天纪全量语料，提交 `462faa4`），这里只是其中紫微部分的分讲版本，**内容以语料库为准**，会随语料库同步更新。
+Nội dung trích xuất từ kho ngữ liệu [nihai-tianji-corpus](https://github.com/Renhuai123/nihai-tianji-corpus) (commit `462faa4`), được phân tách theo từng bài giảng để tiện tra cứu.
 
-![倪海厦《天纪·紫微斗数》一图看全](./overview.png)
+![Tổng quan Tử Vi Đẩu Số Thiên Kỷ](./overview.png)
 
-## 收录范围
+## Phạm vi thu thập
 
-- **紫微斗数 14 讲**：2上 至 15上，全部收录，共 1808 条。
-- **补充 1**：19上 第 2–4 段，即紫微在堪舆中的运用、斗君、流月流日，共 29 条。
-- **补充 2**：24下 里讲紫微的片段，共 11 条。
+- **Tử Vi Đẩu Số 14 bài giảng**: Từ tập 2 thượng đến 15 thượng, thu thập toàn bộ, tổng cộng 1.808 điều.
+- **Phần bổ sung 1**: Tập 19 thượng phần 2–4 (ứng dụng Tử Vi trong kham dư phong thủy, Đẩu Quân, lưu nguyệt lưu nhật), gồm 29 điều.
+- **Phần bổ sung 2**: Tập 24 hạ các đoạn luận giải Tử Vi, gồm 11 điều.
 
-不收录的：
+Không bao gồm:
+- Toàn bộ băng ghi âm/ghi hình bản quyền (tất cả chỉ dẫn nguồn mốc thời gian đến video gốc công khai).
 
-- **1上 的斗数片段（命相同参）**：《天纪》完结版的语料里没有对应条目。
-- **完整逐字稿**：只收倪师原话短引文和出处，不含能还原整堂课的逐字稿。
-- **视频截图和任何视听内容**：所有出处都是指向 B 站原视频页面的链接。
+## Mục lục theo bài giảng
 
-## 分讲目录
-
-| 讲次 | 内容 | 条数 | 文件 |
+| Bài giảng | Nội dung chính | Số lượng điều | File liên kết |
 |---|---|---|---|
-| 2上 | 十二宫/经脉流注图 | 180 | [2上.md](./2上.md) |
-| 3上 | 四化星/北斗星系/南斗星系 | 143 | [3上.md](./3上.md) |
-| 4上 | 南斗星系/六杀星/副星/总格/离日绝日 | 130 | [4上.md](./4上.md) |
-| 5上 | 紫微在子/死夫/无子宅 | 145 | [5上.md](./5上.md) |
-| 6上 | 发旋定时辰/紫微在丑/日月反背/合八字/紫微在寅 | 149 | [6上.md](./6上.md) |
-| 7上 | 紫微在卯/辰/巳/午/未/申 | 144 | [7上.md](./7上.md) |
-| 8上 | 紫微在酉/戌/亥/夫妻生离死别 | 134 | [8上.md](./8上.md) |
-| 9上 | 再婚改运法/挑子女时间/中年丧偶面相/化忌冲命 | 138 | [9上.md](./9上.md) |
-| 10上 | 紫微在申/辰/子案例/女身男命/破军居子午/安床/杀破狼个性/晚婚/代表儿子的阳星/半子送终 | 138 | [10上.md](./10上.md) |
-| 11上 | 右弼坐父母宫/科忌屠夫/女命巨日偏房格/克妻命 | 118 | [11上.md](./11上.md) |
-| 12上 | 化忌冲命/六亲不靠/兄弟夭折相/过忌结婚/多婚 | 106 | [12上.md](./12上.md) |
-| 13上 | 杀破狼/科权禄三会/小六壬/太阴陷化忌/红鸾天喜化忌 | 91 | [13上.md](./13上.md) |
-| 14上 | 忌冲太阳/男命太阴陷/太阴化忌入命/孤鸾命 | 96 | [14上.md](./14上.md) |
-| 15上 | 刑夫剋子/女命太阳陷/廉贪在巳亥/六亲不靠/手相 | 96 | [15上.md](./15上.md) |
-| 19上 | 补充1（19上 第 2–4 段：紫微在堪舆中的运用、斗君、流月流日） | 29 | [19上_补充1.md](./19上_补充1.md) |
-| 24下 | 补充2（24下 里的紫微片段） | 11 | [24下_补充2.md](./24下_补充2.md) |
+| 2 thượng | 12 Cung vị / Kinh mạch lưu chú đồ | 180 | [2 thượng.md](./2上.md) |
+| 3 thượng | Tứ Hóa tinh / Bắc Đẩu tinh hệ / Nam Đẩu tinh hệ | 143 | [3 thượng.md](./3上.md) |
+| 4 thượng | Nam Đẩu tinh hệ / Lục Sát tinh / Phụ tinh / Tổng cách / Ngày Ly Ngày Tuyệt | 130 | [4 thượng.md](./4上.md) |
+| 5 thượng | Tử Vi tại Tý / Hạn tử tức / Trạch vận vô tử | 145 | [5 thượng.md](./5上.md) |
+| 6 thượng | Xem xoáy tóc định giờ sinh / Tử Vi tại Sửu / Nhật Nguyệt phản bối / Hợp Bát Tự / Tử Vi tại Dần | 149 | [6 thượng.md](./6上.md) |
+| 7 thượng | Tử Vi tại Mão / Thìn / Tỵ / Ngọ / Mùi / Thân | 144 | [7 thượng.md](./7上.md) |
+| 8 thượng | Tử Vi tại Dậu / Tuất / Hợi / Phu thê sinh ly tử biệt | 134 | [8 thượng.md](./8上.md) |
+| 9 thượng | Phương pháp cải vận tái hôn / Chọn thời điểm sinh con / Tướng mạo trung niên góa bụa / Hóa Kỵ xung Mệnh | 138 | [9 thượng.md](./9上.md) |
+| 10 thượng | Các trường hợp Tử Vi tại Thân, Thìn, Tý / Nữ thân nam mệnh / Phá Quân cư Tý Ngọ / An giường ngủ / Cá tính Sát Phá Tham / Muộn màng hôn nhân | 138 | [10 thượng.md](./10上.md) |
+| 11 thượng | Hữu Bật tọa cung Phụ Mẫu / Khoa Kỵ đồ tể / Nữ mệnh Cự Nhật thiên phòng cách / Mệnh khắc thê | 118 | [11 thượng.md](./11上.md) |
+| 12 thượng | Hóa Kỵ xung Mệnh / Lục thân bất khả kháo / Tướng mạo anh em yểu mệnh / Vượt hạn Kỵ kết hôn | 106 | [12 thượng.md](./12上.md) |
+| 13 thượng | Sát Phá Tham / Khoa Quyền Lộc tam hội / Tiểu Lục Nhâm / Thái Âm hãm Hóa Kỵ / Hồng Loan Thiên Hỷ Hóa Kỵ | 91 | [13 thượng.md](./13上.md) |
+| 14 thượng | Kỵ xung Thái Dương / Nam mệnh Thái Âm hãm / Thái Âm Hóa Kỵ nhập Mệnh / Mệnh Cô Loan | 96 | [14 thượng.md](./14上.md) |
+| 15 thượng | Hình phu khắc tử / Nữ mệnh Thái Dương hãm / Liêm Tham tại Tỵ Hợi / Lục thân bất kháo / Tướng tay | 96 | [15 thượng.md](./15上.md) |
+| 19 thượng | Bổ sung 1 (Ứng dụng Tử Vi trong phong thủy địa lý, Đẩu Quân, tính lưu nguyệt lưu nhật) | 29 | [19 thượng_bổ sung 1.md](./19上_补充1.md) |
+| 24 hạ | Bổ sung 2 (Các đoạn trích Tử Vi trong tập 24 hạ) | 11 | [24 hạ_bổ sung 2.md](./24下_补充2.md) |
 
-## 每一条长什么样
+## Cấu trúc mỗi dòng trích dẫn
 
 ```
-- [00:36:09](https://www.bilibili.com/video/BV1KJsLekEfA?p=9&t=2169) 「倪师原话」〔考据标注〕　册目
+- [00:36:09](https://www.bilibili.com/video/BV1KJsLekEfA?p=9&t=2169) 「Lời thầy Nghê」〔Ghi chú khảo chứng〕  Mục trích
 ```
 
-- **时间**：这句话在该集视频里的起始时间，点开就从这一秒开始播。
-- **「」里**：倪师原话。只删口语赘词和识别噪声、补标点，不改字。
-- **〔〕里**：考据标注。
-  - 字幕错字经人工裁决改正的，写作「已按裁决改正：错字→正字」。
-  - 倪师讲解里经排盘验算确认的笔误，写作「勘误：……」，原话照留。目前有 5上 一处，相关 4 条，说明见[语料库勘误页](https://github.com/Renhuai123/nihai-tianji-corpus/blob/main/docs/%E5%8B%98%E8%AF%AF.md)。
-- **册目**：这句话在语料库十一册体系里的位置，比如「主星 › 紫微 · 定性」。
-
-`entries.jsonl` 是同一批内容的机器可读版本，一行一条，字段与语料库相同，说明见[语料库字段说明](https://github.com/Renhuai123/nihai-tianji-corpus/blob/main/data/schema.md)。
-
-## 许可
-
-本目录采用 **CC BY-NC-SA 4.0**：可以引用、转载，须注明出处；**不许商用**；改编后的作品须用同样的协议。本目录不适用仓库根目录的 MIT 与 CC BY 4.0，详见 [LICENSE.md](./LICENSE.md)。
-
-## 版权与致谢
-
-- 《天纪》课程内容的著作权归**倪海厦先生及其权利继承人**所有。
-- 本目录的引文是**倪师的口述原话**。整理以 B 站公开视频为素材，经文字识别、双语音引擎交叉核验和人工勘误得出；相关事宜已与视频上传者沟通并获知悉。
-- 出处链接指向 B 站原视频页面，方便读者回放核对，也为原视频带去访问。
-- 权利方对任何内容提出异议，我们收到通知后会**立即下架**相应部分。
-
-内容属传统文化研究与学习资料，不构成任何医疗、投资或人生决策建议。
+- **Mốc thời gian**: Điểm bắt đầu của câu nói trong video tập đó, nhấp vào sẽ phát ngay từ giây này.
+- **Trong ngoặc 「」**: Nguyên văn lời giảng của thầy Nghê.
+- **Trong ngoặc 〔〕**: Ghi chú khảo chứng, liên hệ đối chiếu.

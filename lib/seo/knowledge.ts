@@ -100,10 +100,10 @@ function parseStarContent(content: string): ParsedContent {
     const p = parts[i];
     const end = i + 1 < parts.length ? parts[i + 1].start : content.length;
     const text = content.slice(p.markerEnd, end).trim();
-    if (p.name === '一句话定调') out.dingdiao = text;
-    else if (p.name === '核心论断') out.lundian = text;
-    else if (p.name === '命盘依据') out.yiju = text;
-    else if (p.name === '经典出处') out.chuchu = text;
+    if (p.name === '一句话定调' || p.name === 'Định điệu một câu') out.dingdiao = text;
+    else if (p.name === '核心论断' || p.name === 'Luận đoán cốt lõi') out.lundian = text;
+    else if (p.name === '命盘依据' || p.name === 'Căn cứ mệnh bàn') out.yiju = text;
+    else if (p.name === '经典出处' || p.name === 'Xuất xứ kinh điển') out.chuchu = text;
   }
   return out;
 }
@@ -145,18 +145,18 @@ export function getAllKnowledgeRoutes() {
 
 /** 主星属性简介（用于 SEO 页"了解 XX 星"section） */
 export const STAR_BRIEF_SEO: Record<string, string> = {
-  '紫微': '紫微为帝星，主尊贵，化气为尊。落命主有领导气场、宜大平台高位。',
-  '天机': '天机为智慧星，主善变机灵，化气为善。落命主聪明机变、宜辅佐策划。',
-  '太阳': '太阳为男贵星，主名誉公务，化气为贵。落命主光明磊落、宜公职名声。',
-  '武曲': '武曲为财星，主刚毅果决，化气为财。落命主理财能力强、宜实业金融。',
-  '天同': '天同为福星，主温和享乐，化气为福。落命主性情温和、有福气。',
-  '廉贞': '廉贞为次桃花星，文武兼备，化气为囚。落命主多才多艺、感情丰富。',
-  '天府': '天府为南帝守财星，主稳重保守，化气为令。落命主品行端正、善守财库。',
-  '太阴': '太阴为月亮富贵星，主田宅富贵，化气为富。落命主感情细腻、女命最吉。',
-  '贪狼': '贪狼为桃花欲望星，多才多社交，化气为桃花。落命主多才艺、社交广。',
-  '巨门': '巨门为是非口才星，主辩论传媒，化气为暗。落命主口才好、宜律师教师。',
-  '天相': '天相为印星辅佐，主忠厚老实，化气为印。落命主品行端正、宜行政法务。',
-  '天梁': '天梁为老人星荫星，善逢凶化吉，化气为荫。落命主慈悲善良、宜法律医学。',
-  '七杀': '七杀为将星，主孤独果决冒险，化气为肃杀。落命主刚毅果决、宜军警创业。',
-  '破军': '破军为破坏创新星，主六亲缘薄，化气为耗。落命主开创变动、宜技术专长。',
+  '紫微': 'Tử Vi là Đế tinh, chủ tôn quý, hóa khí vi Tôn. Thủ Mệnh có khí chất lãnh đạo, tôn nghiêm, hợp nền tảng lớn và vị trí quản lý cao.',
+  '天机': 'Thiên Cơ là Trí tuệ tinh, chủ thiện biến linh hoạt, hóa khí vi Thiện. Thủ Mệnh thông minh cơ mưu, giỏi hoạch định chiến lược, phụ tá đắc lực.',
+  '太阳': 'Thái Dương là Quý tinh, chủ danh dự công vụ, hóa khí vi Quý. Thủ Mệnh quang minh lỗi lạc, khẳng khái nhiệt tình, hợp công quyền và danh tiếng.',
+  '武曲': 'Vũ Khúc là Tài tinh, chủ cương nghị quyết đoán, hóa khí vi Tài. Thủ Mệnh ý chí kiên định, năng lực tài chính mạnh mẽ, hợp kinh doanh và tài chính.',
+  '天同': 'Thiên Đồng là Phúc tinh, chủ ôn hòa hưởng lạc, hóa khí vi Phúc. Thủ Mệnh tính tình đôn hậu hiền hòa, nhân duyên tốt, hậu vận an khang hưởng phúc.',
+  '廉贞': 'Liêm Trinh là Thứ Đào Hoa, văn võ kiêm toàn, hóa khí vi Tù. Thủ Mệnh đa tài đa nghệ, cá tính cương trực, tình cảm phong phú, phong cách quyết liệt.',
+  '天府': 'Thiên Phủ là Nam Đẩu Lệnh tinh, chủ vững vàng cẩn trọng, hóa khí vi Lệnh. Thủ Mệnh phong thái đĩnh đạc, tài khố đầy đủ, giỏi giữ gìn và quản trị.',
+  '太阴': 'Thái Âm là Phú tinh (Mặt Trăng), chủ điền trạch tài lộc, hóa khí vi Phú. Thủ Mệnh tâm tư tinh tế nhu hòa, giàu óc thẩm mỹ, nữ mệnh đại cát.',
+  '贪狼': 'Tham Lang là Đào Hoa dục vọng tinh, nhiều tài hoa giao thiệp, hóa khí vi Đào Hoa. Thủ Mệnh hoạt bát, quảng giao, nhiều tham vọng và đa tài nghệ.',
+  '巨门': 'Cự Môn là Ám tinh chủ khẩu tài tài biện luận, hóa khí vi Ám. Thủ Mệnh ăn nói sắc bén, tư duy logic, hợp công việc tư vấn, giảng dạy, pháp lý, truyền thông.',
+  '天相': 'Thiên Tướng là Ấn tinh phò tá, chủ trung hậu thành tín, hóa khí vi Ấn. Thủ Mệnh phẩm hạnh đoan chính, xử sự công tâm, hợp tham mưu cố vấn, pháp chế.',
+  '天梁': 'Thiên Lương là Ấm tinh (Thọ tinh), giỏi phùng hung hóa cát, hóa khí vi Ấm. Thủ Mệnh từ bi bác ái, chính trực thanh cao, hợp y dược, pháp luật, giáo dục.',
+  '七杀': 'Thất Sát là Tướng tinh dũng mãnh, chủ cô độc quyết đoán mạo hiểm, hóa khí vi Quyền Sát. Thủ Mệnh cương nghị kiên cường, dám nghĩ dám làm, hợp khởi nghiệp.',
+  '破军': 'Phá Quân là Dũng tinh tiên phong, chủ biến động đổi mới không ngừng, hóa khí vi Hao. Thủ Mệnh sáng tạo độc đáo, dám phá vỡ lối mòn, hợp kỹ thuật công nghệ.',
 };

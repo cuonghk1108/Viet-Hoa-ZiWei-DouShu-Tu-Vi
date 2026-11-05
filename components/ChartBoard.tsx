@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ZiweiChart, Palace, Star } from '@/lib/ziwei/types';
 import { BRANCHES, STEMS } from '@/lib/ziwei/constants';
+import { tBranch, tPalace, tWuxingJu, tSiHua } from '@/lib/ziwei/i18n-vi';
 import PalaceCell from './PalaceCell';
 import TimeNav, { type TimeView, getYearStemIndex, buildSiHuaOverlay } from './TimeNav';
 
@@ -20,7 +21,7 @@ const BRANCH_GRID_POS: Record<number, [number, number]> = {
   2: [4, 1], 1: [4, 2], 0: [4, 3], 11: [4, 4],
 };
 
-// 每个地支宫位在网格中的中心坐标（百分比）
+// Tọa độ trung tâm từng cung trong lưới (phần trăm)
 const BRANCH_SVG_POS: Record<number, [number, number]> = {
   5: [12.5, 12.5], 6: [37.5, 12.5], 7: [62.5, 12.5], 8: [87.5, 12.5],
   4: [12.5, 37.5],                                      9: [87.5, 37.5],
@@ -28,29 +29,17 @@ const BRANCH_SVG_POS: Record<number, [number, number]> = {
   2: [12.5, 87.5], 1: [37.5, 87.5], 0: [62.5, 87.5], 11: [87.5, 87.5],
 };
 
-// 绕盘面顺时针排列（用于三方四正四边形排序）
-const CLOCKWISE_INDEX: Record<number, number> = {
-  5: 0, 6: 1, 7: 2, 8: 3,
-  9: 4, 10: 5,
-  11: 6, 0: 7, 1: 8, 2: 9,
-  3: 10, 4: 11,
-};
+const ANIMATION_ORDER = [5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4];
 
-function sortClockwise(branches: number[]): number[] {
-  return [...branches].sort((a, b) => CLOCKWISE_INDEX[a] - CLOCKWISE_INDEX[b]);
-}
-
-/** 三方四正：本宫 + 对宫 + 两个三合宫 */
+/** Tam Phương Tứ Chính: Bản cung + Đối cung + 2 Cung Tam Hợp */
 function getSanFangSiZheng(branch: number): [number, number, number, number] {
   return [
     branch,
-    (branch + 6) % 12,   // 对宫
-    (branch + 4) % 12,   // 三合1
-    (branch + 8) % 12,   // 三合2
+    (branch + 6) % 12,   // Đối cung
+    (branch + 4) % 12,   // Tam hợp 1
+    (branch + 8) % 12,   // Tam hợp 2
   ];
 }
-
-const ANIMATION_ORDER = [5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4];
 
 export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHuaClick }: ChartBoardProps) {
   const [selectedBranch, setSelectedBranch] = useState<number | null>(null);
@@ -60,7 +49,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
   const palaceMap: Record<number, Palace> = {};
   chart.palaces.forEach(p => { palaceMap[p.branch] = p; });
 
-  // 计算当前叠加四化数据（大限或流年）
+  // Tính dữ liệu Tứ Hóa phụ (Đại hạn hoặc Lưu niên)
   const currentDx = chart.daXians[chart.currentDaXianIndex];
   const overlayData: Record<string, string> = (() => {
     if (timeView === 'daxian' && currentDx) {
@@ -83,13 +72,13 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
     }
   };
 
-  // 三方四正
+  // Tam phương tứ chính
   const sanFangBranches = selectedBranch !== null ? getSanFangSiZheng(selectedBranch) : null;
   const sanFangSet = sanFangBranches ? new Set(sanFangBranches) : null;
 
   return (
     <div className="w-full select-none">
-      {/* 时间导航轴 */}
+      {/* Thanh điều hướng thời gian */}
       <TimeNav
         chart={chart}
         view={timeView}
@@ -98,21 +87,21 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
         onYearChange={setLiunianYear}
       />
 
-      {/* 命盘标题 */}
+      {/* Tiêu đề lá số */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-3"
       >
         <div className="text-[10px] tracking-[0.5em] uppercase mb-1" style={{ color: 'var(--t-faint)' }}>
-          Zi Wei Dou Shu
+          TỬ VI ĐẨU SỐ
         </div>
         <h2 className="text-sm tracking-[0.25em] font-medium" style={{ color: 'var(--t-gold)' }}>
-          {chart.birthInfo.name ? `${chart.birthInfo.name} · ` : ''}紫微斗数命盘
+          {chart.birthInfo.name ? `${chart.birthInfo.name} · ` : ''}Lá Số Tử Vi Đẩu Số
         </h2>
       </motion.div>
 
-      {/* 4x4 命盘网格（含 SVG 叠加层） */}
+      {/* Lưới 4x4 bàn lá số */}
       <div
         className="grid rounded-xl overflow-hidden relative"
         style={{
@@ -145,7 +134,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           );
         })}
 
-        {/* 中央信息区 */}
+        {/* Trung cung (Khu vực thông tin trung tâm) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -158,11 +147,11 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
           </div>
 
           <div className="text-center space-y-1">
-            <div className="text-[9px] tracking-[0.3em] font-medium" style={{ color: 'var(--t-gold)' }}>紫微斗数</div>
+            <div className="text-[10px] tracking-[0.3em] font-semibold" style={{ color: 'var(--t-gold)' }}>TỬ VI ĐẨU SỐ</div>
             <div className="text-[10px] space-y-0.5" style={{ color: 'var(--t-faint)' }}>
-              <div>命宫 <span style={{ color: 'var(--t-gold)', opacity: 0.7 }}>{BRANCHES[chart.mingGongBranch]}</span></div>
-              <div>身宫 <span className="text-sky-500/70">{BRANCHES[chart.shenGongBranch]}</span></div>
-              <div className="text-[9px]" style={{ color: 'var(--t-gold)', opacity: 0.75 }}>{chart.wuxingJuName}</div>
+              <div>Mệnh tại <span style={{ color: 'var(--t-gold)', opacity: 0.85 }} className="font-semibold">{tBranch(chart.mingGongBranch)}</span></div>
+              <div>Thân tại <span className="text-sky-500/90 font-semibold">{tBranch(chart.shenGongBranch)}</span></div>
+              <div className="text-[9px] font-medium" style={{ color: 'var(--t-gold)', opacity: 0.85 }}>{tWuxingJu(chart.wuxingJuName)}</div>
             </div>
           </div>
 
@@ -171,20 +160,20 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
             return (
               <div className="border border-purple-500/30 rounded-lg px-3 py-1.5 text-center"
                 style={{ background: 'rgba(147,51,234,0.06)' }}>
-                <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">当前大限</div>
-                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge}岁</div>
-                <div className="text-[9px] text-purple-500/60">{dx.palaceName}</div>
+                <div className="text-[8px] text-purple-500/80 mb-0.5 tracking-wider">Đại Hạn Hiện Tại</div>
+                <div className="text-[12px] text-purple-400 font-medium tabular-nums">{dx.startAge}–{dx.endAge} tuổi</div>
+                <div className="text-[9px] text-purple-500/70">{tPalace(dx.palaceName, true)}</div>
               </div>
             );
           })()}
 
-          <div className="text-[8px] text-center leading-relaxed font-mono" style={{ color: 'var(--t-faint)', opacity: 0.75 }}>
-            {chart.lunarInfo.lunarYear}·{chart.lunarInfo.isLeapMonth ? '闰' : ''}
-            {chart.lunarInfo.lunarMonth}·{chart.lunarInfo.lunarDay}
+          <div className="text-[8px] text-center leading-relaxed font-mono" style={{ color: 'var(--t-faint)', opacity: 0.85 }}>
+            ÂL: {chart.lunarInfo.lunarYear} · {chart.lunarInfo.isLeapMonth ? 'Nhuận ' : ''}
+            Tháng {chart.lunarInfo.lunarMonth} · Ngày {chart.lunarInfo.lunarDay}
           </div>
         </motion.div>
 
-        {/* ── 三方四正 SVG 连线（绝对定位在 grid 内部，受 overflow:hidden 裁切） ── */}
+        {/* ── Tam Phương Tứ Chính SVG连线 ── */}
         <AnimatePresence>
           {sanFangBranches !== null && (
             <motion.div
@@ -207,24 +196,23 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
                 style={{ display: 'block' }}
               >
                 {(() => {
-                  // 三角形（三方）+ 一条直线（对宫）
-                  const p0 = BRANCH_SVG_POS[sanFangBranches[0]]; // 本宫
-                  const p1 = BRANCH_SVG_POS[sanFangBranches[1]]; // 对宫
-                  const p2 = BRANCH_SVG_POS[sanFangBranches[2]]; // 三合1
-                  const p3 = BRANCH_SVG_POS[sanFangBranches[3]]; // 三合2
+                  const p0 = BRANCH_SVG_POS[sanFangBranches[0]]; // Bản cung
+                  const p1 = BRANCH_SVG_POS[sanFangBranches[1]]; // Đối cung
+                  const p2 = BRANCH_SVG_POS[sanFangBranches[2]]; // Tam hợp 1
+                  const p3 = BRANCH_SVG_POS[sanFangBranches[3]]; // Tam hợp 2
                   const dash = "6,5";
                   const stroke = "rgba(37,99,235,0.55)";
                   const sw = "1.5";
                   return (
                     <>
-                      {/* 对宫直线：本宫 ↔ 对宫（穿过中心） */}
+                      {/* Đối cung: Bản cung ↔ Đối cung */}
                       <line
                         x1={`${p0[0]}%`} y1={`${p0[1]}%`}
                         x2={`${p1[0]}%`} y2={`${p1[1]}%`}
                         stroke={stroke} strokeWidth={sw}
                         strokeDasharray={dash} strokeLinecap="round"
                       />
-                      {/* 三合三角形：本宫 → 三合1 → 三合2 → 本宫 */}
+                      {/* Tam hợp: Bản cung → Tam hợp 1 → Tam hợp 2 → Bản cung */}
                       <line
                         x1={`${p0[0]}%`} y1={`${p0[1]}%`}
                         x2={`${p2[0]}%`} y2={`${p2[1]}%`}
@@ -243,7 +231,6 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
                         stroke={stroke} strokeWidth={sw}
                         strokeDasharray={dash} strokeLinecap="round"
                       />
-                      {/* 四个宫位中心标记点 */}
                       {[p0, p1, p2, p3].map((p, i) => (
                         <circle
                           key={i}
@@ -261,7 +248,7 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
         </AnimatePresence>
       </div>
 
-      {/* 图例 */}
+      {/* Chú thích Tứ Hóa & Hướng dẫn */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -269,15 +256,15 @@ export default function ChartBoard({ chart, onStarSelect, onPalaceSelect, onSiHu
         className="mt-3 flex items-center justify-center gap-2 text-[9px] flex-wrap"
       >
         {[
-          { h: '化禄', c: 'text-emerald-500 border-emerald-500/30' },
-          { h: '化权', c: 'text-blue-500 border-blue-500/30' },
-          { h: '化科', c: 'text-yellow-500 border-yellow-500/30' },
-          { h: '化忌', c: 'text-red-500 border-red-500/30' },
+          { h: 'Hóa Lộc', c: 'text-emerald-500 border-emerald-500/30' },
+          { h: 'Hóa Quyền', c: 'text-blue-500 border-blue-500/30' },
+          { h: 'Hóa Khoa', c: 'text-yellow-500 border-yellow-500/30' },
+          { h: 'Hóa Kỵ', c: 'text-red-500 border-red-500/30' },
         ].map(({ h, c }) => (
           <span key={h} className={`border px-1.5 py-0.5 rounded-full font-medium ${c}`}>{h}</span>
         ))}
         <span className="px-1.5 py-0.5 rounded-full" style={{ color: 'var(--t-faint)', border: '1px solid var(--t-border)' }}>
-          点击宫位看三方四正
+          Nhấp vào cung bất kỳ để xem Tam Phương Tứ Chính
         </span>
       </motion.div>
     </div>
